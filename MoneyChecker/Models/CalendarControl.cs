@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
+
 
 namespace MoneyChecker.Models
 {
@@ -39,8 +36,15 @@ namespace MoneyChecker.Models
             }
 
             _listView.ItemsSource = _cells;
-           
- 
+
+            foreach (var item in _listView.ItemsPanel.Resources.OfType<Grid>())
+            {
+                if(item is Grid) 
+                {
+                    item.Background = System.Windows.Media.Brushes.Red;
+                
+                }
+            }
 
         }
 
@@ -56,6 +60,9 @@ namespace MoneyChecker.Models
         public string Date { get { return _date.Day.ToString(); } }
 
         public string DayOfWeek { get { return _date.ToString("dddd"); } }
+
+        public DayOfWeek DayOfWeekEnum { get { return _date.DayOfWeek; } }
+
     }
 
 }
