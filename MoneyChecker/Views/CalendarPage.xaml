@@ -14,7 +14,8 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel/>
+                    <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
@@ -28,9 +29,8 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0"
-                                Text="{Binding Date}"/>
-                            <TextBlock Grid.Row="1" Text="TEST"/>
+                            <TextBlock Grid.Row="0" Text="{Binding Date}"/>
+                            <TextBlock Grid.Row="1" Text="{Binding DayOfWeek}"/>
 
 
 

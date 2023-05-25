@@ -29,16 +29,18 @@ namespace MoneyChecker.Models
             int _days = DateTime.DaysInMonth(_curDate.Year, _curDate.Month);
 
             _cells = new List<CalendarCell>();
+            CalendarCell cell;
 
             for (int i = 0; i < _days; i++)
             {
-                _cells.Add(new CalendarCell() { _date = new DateTime(_curDate.Year, _curDate.Month, i+1) });
-            
+               cell  = new CalendarCell() { _date = new DateTime(_curDate.Year, _curDate.Month, i + 1) };
+
+                _cells.Add(cell);
             }
 
             _listView.ItemsSource = _cells;
-
-
+           
+ 
 
         }
 
@@ -52,6 +54,8 @@ namespace MoneyChecker.Models
 
 
         public string Date { get { return _date.Day.ToString(); } }
+
+        public string DayOfWeek { get { return _date.ToString("dddd"); } }
     }
 
 }
