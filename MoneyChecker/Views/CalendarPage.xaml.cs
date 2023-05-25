@@ -12,9 +12,8 @@ namespace MoneyChecker.Views
 
         public CalendarPage()
         {
-
             InitializeComponent();
-            calendarControl = new CalendarControl(GridCalendar);
+            calendarControl = new CalendarControl(ListViewCalendar);
         }
 
 
