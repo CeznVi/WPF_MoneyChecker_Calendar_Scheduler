@@ -63,6 +63,8 @@ namespace MoneyChecker.Models
 
         public DayOfWeek DayOfWeekEnum { get { return _date.DayOfWeek; } }
 
+        public Color CellColor { get { } }
+
     }
 
 }

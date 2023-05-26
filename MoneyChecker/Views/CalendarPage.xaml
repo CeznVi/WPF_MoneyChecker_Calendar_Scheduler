@@ -8,28 +8,31 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CalendarPage" Background="Azure">
 
-    <Grid x:Name="GridCalendar" Background="Azure">
+    <Grid x:Name="GridCalendar" Background="Azure" >
         <ListView x:Name="ListViewCalendar" 
                   ItemsSource="{Binding CalendarCell}"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel></WrapPanel>
+                    <UniformGrid Columns="7" Rows="6" />
+
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border x:Name="BorderCell"
-                        Height="100" Width="100"
+                            Height="100" Width="70"
                             BorderBrush="Black" BorderThickness="1"
                             CornerRadius="10" Padding="5">
-                        <Grid>
+                        <Grid Background="{Binding CellColor}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="5*"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0" Text="{Binding Date}"/>
+                            <TextBlock Grid.Row="0" Text="{Binding Date}" 
+                                       HorizontalAlignment="Center"
+                                       FontSize="14" FontFamily="TimesNewRoman"/>
                             <TextBlock Grid.Row="1" Text="{Binding DayOfWeek}"/>
 
                         </Grid>
