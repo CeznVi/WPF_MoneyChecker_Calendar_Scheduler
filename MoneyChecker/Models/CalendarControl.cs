@@ -79,7 +79,7 @@ namespace MoneyChecker.Models
             _cells = new List<CalendarCell>();
             CalendarCell cell;
 
-            
+            AddCellsBeforeFirstDay();
 
 
             for (int i = 0; i < _days; i++)
@@ -89,9 +89,13 @@ namespace MoneyChecker.Models
                 _cells.Add(cell);
             }
 
+            AddCellsAfterLastDay();
+
             _listView.ItemsSource = _cells;
 
         }
+
+        /* /////-----------  ПРИВАТНЫЕ Методы   -----------\\\\\ */
 
         /// <summary>
         /// Добавить дней перед первым числом в зависимости от дня недели первого числа
@@ -100,23 +104,35 @@ namespace MoneyChecker.Models
         {
             DateTime firstDayOfMonth = new DateTime(_curDate.Year, _curDate.Month, 1);
             
-            DateTime monthBefore = new DateTime(_curDate.Year, _curDate.AddMonths(-1).Month, 1);
+            DateTime monthBefore = _curDate.AddMonths(-1);
+
             int _days = DateTime.DaysInMonth(monthBefore.Year, monthBefore.Month);
 
-            if (firstDayOfMonth.DayOfWeek == DayOfWeek.Monday)
-            {
-                return;
-            }
-            else
+            if( firstDayOfMonth.DayOfWeek != DayOfWeek.Monday)
             {
                 CalendarCell cell;
 
-                for (int i = _days - Convert.ToInt32(firstDayOfMonth.DayOfWeek); i < _days; i++) 
+                int howMany = _days;
+
+                if (firstDayOfMonth.DayOfWeek == DayOfWeek.Tuesday)
+                    howMany = _days ;
+                else if(firstDayOfMonth.DayOfWeek == DayOfWeek.Wednesday)
+                    howMany = _days - 1;
+                else if (firstDayOfMonth.DayOfWeek == DayOfWeek.Thursday)
+                    howMany = _days - 2;
+                else if (firstDayOfMonth.DayOfWeek == DayOfWeek.Friday)
+                    howMany = _days - 3;
+                else if (firstDayOfMonth.DayOfWeek == DayOfWeek.Saturday)
+                    howMany = _days - 4;
+                else if (firstDayOfMonth.DayOfWeek == DayOfWeek.Sunday)
+                    howMany = _days - 5;
+
+                for (int i = howMany; i <= _days; i++)
                 {
-                    cell = new CalendarCell() { _date = new DateTime(monthBefore.Year, monthBefore.Month, _days + i) };
-                    _cells.Add(cell);
+                    cell = new CalendarCell() { _date = new DateTime(monthBefore.Year, monthBefore.Month, i) };
+                     _cells.Add(cell);
+
                 }
-                
             }
 
 
@@ -128,9 +144,48 @@ namespace MoneyChecker.Models
 
 
         }
+
+        /// <summary>
+        /// Добавить дней после последнего числа в зависимости от дня недели последнего числа
+        /// </summary>
+        private void AddCellsAfterLastDay()
+        {
+            DateTime lastDayOfMonth = new DateTime(_curDate.Year, _curDate.Month, DateTime.DaysInMonth(_curDate.Year, _curDate.Month));
+
+            DateTime monthAfter = _curDate.AddMonths(+1);
+
+            int howMany = 0;
+
+            if (lastDayOfMonth.DayOfWeek == DayOfWeek.Sunday)
+                howMany = 0;
+            else if(lastDayOfMonth.DayOfWeek == DayOfWeek.Saturday)
+                howMany = 1;
+            else if(lastDayOfMonth.DayOfWeek == DayOfWeek.Friday)
+                howMany = 2;
+            else if (lastDayOfMonth.DayOfWeek == DayOfWeek.Thursday)
+                howMany = 3;
+            else if (lastDayOfMonth.DayOfWeek == DayOfWeek.Wednesday)
+                howMany = 4;
+            else if (lastDayOfMonth.DayOfWeek == DayOfWeek.Tuesday)
+                howMany = 5;
+            else if (lastDayOfMonth.DayOfWeek == DayOfWeek.Monday)
+                howMany = 6;
+
+            CalendarCell cell;
+
+            for (int i = 1; i <= howMany; i++)
+            {
+                cell = new CalendarCell() { _date = new DateTime(monthAfter.Year, monthAfter.Month, i) };
+                _cells.Add(cell);
+
+            }
+        }
+
     }
 
-
+    /// <summary>
+    /// Клас описывающий сущность клетки (1дня) календаря
+    /// </summary>
     public class CalendarCell
     {
 
@@ -139,6 +194,7 @@ namespace MoneyChecker.Models
         /// Хранит дату
         /// </summary>
         public DateTime _date;
+        
 
 
         /* /////-----------   Свойства   -----------\\\\\ */
@@ -147,6 +203,11 @@ namespace MoneyChecker.Models
         /// Возвращает дату в виде строки
         /// </summary>
         public string Date { get { return _date.Day.ToString(); } }
+
+        /* Для дебага */
+        ////---------------
+        ///public string Date { get { return _date.ToString("d"); } }
+        ////---------------
 
         /// <summary>
         /// Возвращает строку с именем дня недели
@@ -162,14 +223,14 @@ namespace MoneyChecker.Models
         /// Возвращает цвет ячейки в виде строки (для выходных дней другой цвет)
         /// </summary>
         public string CellColor
-        { 
-            get 
+        {
+            get
             {
-                if(this.DayOfWeekEnum == System.DayOfWeek.Saturday || this.DayOfWeekEnum == System.DayOfWeek.Sunday)
+                if (this.DayOfWeekEnum == System.DayOfWeek.Saturday || this.DayOfWeekEnum == System.DayOfWeek.Sunday)
                     return Color.Red.Name;
-                else 
+                else
                     return Color.White.Name;
-            } 
+            }
         }
 
     }

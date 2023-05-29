@@ -1,4 +1,6 @@
 ﻿using MoneyChecker.Models;
+using System.Drawing;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MoneyChecker.Views
@@ -40,5 +42,20 @@ namespace MoneyChecker.Views
             calendarControl.MinusYear();
             LabelCurentDate.Content = calendarControl.GetCurentDatePeriod;
         }
+
+        /// <summary>
+        /// При изменении выделения показывает 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListViewCalendar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CalendarCell tmp = (CalendarCell)ListViewCalendar.SelectedValue;
+
+            
+
+            MessageBox.Show($"{tmp.DayOfWeek}      {tmp.Date}");
+        }
+
     }
 }

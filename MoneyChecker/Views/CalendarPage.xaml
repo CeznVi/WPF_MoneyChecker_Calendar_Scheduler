@@ -18,7 +18,7 @@
         <ListView x:Name="ListViewCalendar" Grid.Column="0"
                   ItemsSource="{Binding CalendarCell}"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                  HorizontalContentAlignment="Center">
+                  HorizontalContentAlignment="Center" SelectionChanged="ListViewCalendar_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="7" Rows="6"/>
@@ -33,8 +33,8 @@
                             Background="{Binding CellColor}">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="16"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="18"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" Text="{Binding Date}" 
