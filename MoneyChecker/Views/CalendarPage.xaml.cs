@@ -1,4 +1,6 @@
-﻿using MoneyChecker.Models;
+﻿using MoneyChecker.AppWindow;
+using MoneyChecker.Entities;
+using MoneyChecker.Models;
 using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,11 +52,17 @@ namespace MoneyChecker.Views
         /// <param name="e"></param>
         private void ListViewCalendar_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CalendarCell tmp = (CalendarCell)ListViewCalendar.SelectedValue;
+            if (ListViewCalendar.SelectedValue is (CalendarCell) && ListViewCalendar.SelectedValue != null)
+            {
+                CalendarCell tmp = (CalendarCell)ListViewCalendar.SelectedValue;
 
-            
+                if (tmp.CountEvent != 0)
+                {
+                    ViewEvent windowView = new ViewEvent(tmp.GetDateEvents);
+                    windowView.ShowDialog();
+                }
+            }
 
-            MessageBox.Show($"{tmp.DayOfWeek}      {tmp.Date}");
         }
 
     }

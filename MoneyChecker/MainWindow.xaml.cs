@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using MoneyChecker.Entities;
+using MoneyChecker.Models;
 using MoneyChecker.TabControls;
 using MoneyChecker.Views;
 using MoneyChecker.ViewsModels;

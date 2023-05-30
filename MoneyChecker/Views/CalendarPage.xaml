@@ -34,7 +34,8 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="18"/>
-                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" Text="{Binding Date}" 
@@ -43,7 +44,9 @@
                             <TextBlock Grid.Row="1" Text="{Binding DayOfWeek}"
                                        HorizontalAlignment="Center"
                                        FontSize="12" FontFamily="Arial"/>
-
+                            <TextBlock Grid.Row="2" Text="{Binding CountEventInDayString}"
+                                       HorizontalAlignment="Center" Visibility="{Binding IsVisibleTextBlock}"
+                                       FontSize="12" FontFamily="Arial"/>
                         </Grid>
 
 

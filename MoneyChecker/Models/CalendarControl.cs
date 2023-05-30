@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyChecker.Entities;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,9 +10,10 @@ namespace MoneyChecker.Models
 {
     public class CalendarControl
     {
+        private DateTime _curDate;
 
         private ListView _listView;
-        private DateTime _curDate = new DateTime();
+
         private List<CalendarCell> _cells;
 
         /* /////-----------   Конструктор   -----------\\\\\ */
@@ -86,6 +88,19 @@ namespace MoneyChecker.Models
             {
                 cell = new CalendarCell() { _date = new DateTime(_curDate.Year, _curDate.Month, i + 1) };
 
+                ////////DEBUG
+                if (i == 1 || i == 10 || i == 11)
+                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие {i}" });
+
+                if (i == 25)
+                {
+                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие qqqqq asdasdad{i}"});
+                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие wwwwwww asdasdasda{i}" });
+                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие  eeeeeeee {i} asdasdasdad" });
+
+                }
+                ////////DEBUG КОНЕЦ
+
                 _cells.Add(cell);
             }
 
@@ -135,14 +150,6 @@ namespace MoneyChecker.Models
                 }
             }
 
-
-
-
-
-
-          
-
-
         }
 
         /// <summary>
@@ -183,56 +190,6 @@ namespace MoneyChecker.Models
 
     }
 
-    /// <summary>
-    /// Клас описывающий сущность клетки (1дня) календаря
-    /// </summary>
-    public class CalendarCell
-    {
 
-        /* /////-----------   Переменные   -----------\\\\\ */
-        /// <summary>
-        /// Хранит дату
-        /// </summary>
-        public DateTime _date;
-        
-
-
-        /* /////-----------   Свойства   -----------\\\\\ */
-
-        /// <summary>
-        /// Возвращает дату в виде строки
-        /// </summary>
-        public string Date { get { return _date.Day.ToString(); } }
-
-        /* Для дебага */
-        ////---------------
-        ///public string Date { get { return _date.ToString("d"); } }
-        ////---------------
-
-        /// <summary>
-        /// Возвращает строку с именем дня недели
-        /// </summary>
-        public string DayOfWeek { get { return _date.ToString("dddd"); } }
-
-        /// <summary>
-        /// Приводит день недели к системному Enum
-        /// </summary>
-        private DayOfWeek DayOfWeekEnum { get { return _date.DayOfWeek; } }
-
-        /// <summary>
-        /// Возвращает цвет ячейки в виде строки (для выходных дней другой цвет)
-        /// </summary>
-        public string CellColor
-        {
-            get
-            {
-                if (this.DayOfWeekEnum == System.DayOfWeek.Saturday || this.DayOfWeekEnum == System.DayOfWeek.Sunday)
-                    return Color.Red.Name;
-                else
-                    return Color.White.Name;
-            }
-        }
-
-    }
 
 }
