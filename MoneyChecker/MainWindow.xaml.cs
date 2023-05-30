@@ -22,7 +22,6 @@ namespace MoneyChecker
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
         private void InitUI()

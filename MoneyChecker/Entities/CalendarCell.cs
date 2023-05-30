@@ -84,7 +84,7 @@ namespace MoneyChecker.Entities
         /// <summary>
         /// Возвращает список 
         /// </summary>
-        public List<DateEvent> GetDateEvents { get { return _listDataEvent; } }
+        public List<DateEvent> GetDateEvents { get { return _listDataEvent; }}
 
     }
 

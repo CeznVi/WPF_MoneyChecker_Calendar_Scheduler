@@ -9,6 +9,9 @@ namespace MoneyChecker.Entities
         public DbSet<User> Users { get; set; }
         public DbSet<UserInfo> UsersInfo { get; set; }
 
+        public DbSet<DateEvent> DateEvent { get; set; }
+
+
         private string _dbFilePath;
         public SQLiteDbContext(string dbPath)
         {
@@ -30,6 +33,15 @@ namespace MoneyChecker.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Развертывание бд
+
+            DateEvent[] dateEvents = new DateEvent[]
+            {
+                new DateEvent(){Id = 1, Date = DateTime.Now, Description = "Тестовая запись"},
+            };
+
+            modelBuilder.Entity<DateEvent>().HasData(dateEvents);
+
+
             Category[] categories = new Category[]
             {
                 new Category(){Id = 1, Title = "Питание", Description = ""},

@@ -13,9 +13,11 @@ namespace MoneyChecker.Views
     {
         CalendarControl calendarControl;
 
+
         public SheullerPage()
         {
             InitializeComponent();
+
             calendarControl = new CalendarControl(ListViewCalendar);
             LabelCurentDate.Content = calendarControl.GetCurentDatePeriod;
         }

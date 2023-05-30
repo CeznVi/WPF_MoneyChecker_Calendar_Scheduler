@@ -71,5 +71,6 @@ namespace MoneyChecker.Views
             calendarControl.SetDate(DateTime.Now);
             LabelCurentDate.Content = calendarControl.GetCurentDatePeriod;
         }
+
     }
 }

@@ -1,8 +1,10 @@
 ﻿using MoneyChecker.Entities;
+using MoneyChecker.ViewsModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 
@@ -32,6 +34,9 @@ namespace MoneyChecker.Models
                 return _curDate.ToString("MM yyyy");
             }
         }
+
+        public ListView ListView { get { return _listView; } }
+
 
         /* /////-----------   Методы   -----------\\\\\ */
 
@@ -101,18 +106,7 @@ namespace MoneyChecker.Models
             {
                 cell = new CalendarCell() { _date = new DateTime(_curDate.Year, _curDate.Month, i + 1) };
 
-                ////////DEBUG
-                if (i == 1 || i == 10 || i == 11)
-                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие {i}" });
-
-                if (i == 25)
-                {
-                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие qqqqq asdasdad{i}" });
-                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие wwwwwww asdasdasda{i}" });
-                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие  eeeeeeee {i} asdasdasdad" });
-
-                }
-                ////////DEBUG КОНЕЦ
+                cell.GetDateEvents.AddRange(MainWindow.MainViewModel.DataEventModel.GetDataEventByDate(cell._date));
 
                 _cells.Add(cell);
             }
@@ -156,8 +150,8 @@ namespace MoneyChecker.Models
                 for (int i = howMany; i <= _days; i++)
                 {
                     cell = new CalendarCell() { _date = new DateTime(monthBefore.Year, monthBefore.Month, i) };
-                     _cells.Add(cell);
-
+                    cell.GetDateEvents.AddRange(MainWindow.MainViewModel.DataEventModel.GetDataEventByDate(cell._date));
+                    _cells.Add(cell);
                 }
             }
 
@@ -194,8 +188,8 @@ namespace MoneyChecker.Models
             for (int i = 1; i <= howMany; i++)
             {
                 cell = new CalendarCell() { _date = new DateTime(monthAfter.Year, monthAfter.Month, i) };
+                cell.GetDateEvents.AddRange(MainWindow.MainViewModel.DataEventModel.GetDataEventByDate(cell._date));
                 _cells.Add(cell);
-
             }
         }
 

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoneyChecker.Entities
 {
@@ -13,11 +9,12 @@ namespace MoneyChecker.Entities
     public class DateEvent
     {
         /* /////-----------   Переменные   -----------\\\\\ */
+        public int Id { get; set; }
 
         /// <summary>
         /// Дата события
         /// </summary>
-        public DateTime data;
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Описание события
