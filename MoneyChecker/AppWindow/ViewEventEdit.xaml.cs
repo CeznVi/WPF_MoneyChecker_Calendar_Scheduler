@@ -24,7 +24,6 @@ namespace MoneyChecker.AppWindow
     public partial class ViewEventEdit : Window
     {
         CalendarCell _cel;
-        CalendarControl _celControl;
 
         public ViewEventEdit(CalendarCell cell)
         {

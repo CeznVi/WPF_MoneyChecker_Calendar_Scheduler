@@ -52,10 +52,13 @@ namespace MoneyChecker.Views
         /// <param name="e"></param>
         private void ListViewCalendar_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CalendarCell tmp = (CalendarCell)ListViewCalendar.SelectedValue;
-            ViewEventEdit windowView = new ViewEventEdit(tmp);
-            windowView.ShowDialog();
-            ListViewCalendar.Items.Refresh();
+            if (ListViewCalendar.SelectedValue != null)
+            {
+                CalendarCell tmp = (CalendarCell)ListViewCalendar.SelectedValue;
+                ViewEventEdit windowView = new ViewEventEdit(tmp);
+                windowView.ShowDialog();
+                ListViewCalendar.Items.Refresh();
+            }
         }
 
         private void LabelCurentDate_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
