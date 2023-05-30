@@ -1,4 +1,5 @@
-﻿using MoneyChecker.Entities;
+﻿using MoneyChecker.Commands.CategoryEditor;
+using MoneyChecker.Entities;
 using MoneyChecker.Models;
 using System;
 using System.Collections;
@@ -45,18 +46,34 @@ namespace MoneyChecker.AppWindow
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
 
-            DateEvent d = new DateEvent() { Date = _cel._date, Description = $"событие новое" };
+            AddOrEditEvent addOr = new AddOrEditEvent();
 
-            _cel.GetDateEvents.Add(d);
+            if (addOr.ShowDialog() == true)
+            {
+                DateEvent dateEvent = new DateEvent() { Date = _cel._date, Description = (addOr._dateEvent.Description)};
 
-            MainWindow.MainViewModel.DataEventModel.AddNewDateEvent(d);
-            ListViewEvents.Items.Refresh();
+                _cel.GetDateEvents.Add(dateEvent);
 
+                MainWindow.MainViewModel.DataEventModel.AddNewDateEvent(dateEvent);
+                ListViewEvents.Items.Refresh();
+            }
         }
 
         private void EditEvent_Click(object sender, RoutedEventArgs e)
         {
+            if (ListViewEvents.SelectedItem != null)
+            {
+                AddOrEditEvent addOr = new AddOrEditEvent((DateEvent)ListViewEvents.SelectedItem);
 
+                if (addOr.ShowDialog() == true)
+                {
+                    DateEvent dateEvent = new DateEvent() { Date = _cel._date, Description = (addOr._dateEvent.Description) };
+                    
+                    MainWindow.MainViewModel.DataEventModel.EditDateEvent(dateEvent);
+                    ListViewEvents.Items.Refresh();
+                }
+            }
         }
+
     }
 }

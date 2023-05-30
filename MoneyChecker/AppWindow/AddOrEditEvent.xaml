@@ -5,18 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoneyChecker.AppWindow"
         mc:Ignorable="d"
-        Title="Создание/Редактирование" Height="250" Width="250" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Создание/Редактирование" Height="200" Width="200" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
-        
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            Описание:
+        </TextBlock>
+
+        <TextBox x:Name="TextBoxDescr"
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        </TextBox>
+
+        <Button Grid.Column="0" Grid.Row="3" Width="80" Height="60"  HorizontalAlignment="Stretch"
+                Background="Green" x:Name="ButtonOk" Click="ButtonOk_Click">
+            <TextBlock x:Name="TextBlockOK" Text="Ok" FontSize="20" Foreground="White"/>
+        </Button>
+
+        <Button Grid.Column="1" Grid.Row="3" Width="80" Height="60"  HorizontalAlignment="Stretch" 
+                Background="Red" x:Name="ButtonCancel" Click="ButtonCancel_Click">
+            <TextBlock x:Name="TextBlockCancel" Text="Cancel" FontSize="20" Foreground="White"/>
+        </Button>
+
+
+
+
     </Grid>
 </Window>

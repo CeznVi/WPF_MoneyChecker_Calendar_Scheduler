@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyChecker.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,38 @@ namespace MoneyChecker.AppWindow
     /// </summary>
     public partial class AddOrEditEvent : Window
     {
+        public DateEvent _dateEvent;
+
+        public AddOrEditEvent(DateEvent dateEvent)
+        {
+            InitializeComponent();
+            _dateEvent = dateEvent;
+            TextBoxDescr.Text = _dateEvent.Description;
+        }
+
         public AddOrEditEvent()
         {
             InitializeComponent();
+            _dateEvent = new DateEvent();
+        }
+
+
+
+
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (TextBoxDescr.Text.Length > 5)
+            {
+                _dateEvent.Description = TextBoxDescr.Text;
+
+                DialogResult = true;
+                this.Close();
+            }
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
