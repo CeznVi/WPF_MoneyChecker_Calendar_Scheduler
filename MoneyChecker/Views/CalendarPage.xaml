@@ -77,7 +77,7 @@
             <Label  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="Текущая дата" 
                    HorizontalContentAlignment="Center"/>
             <Label x:Name="LabelCurentDate" BorderThickness="1" BorderBrush="Black" Margin="0 0 0 5"
-                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseDoubleClick="LabelCurentDate_PreviewMouseDoubleClick"/>
 
             <!--Кнопки Месяц "+","-"-->
             <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"

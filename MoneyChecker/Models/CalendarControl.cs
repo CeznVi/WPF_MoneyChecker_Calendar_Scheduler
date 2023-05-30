@@ -72,6 +72,19 @@ namespace MoneyChecker.Models
         }
 
         /// <summary>
+        /// Устанавливает дату
+        /// </summary>
+        /// <param name="date"></param>
+        public void SetDate(DateTime date) 
+        { 
+            _curDate = date;
+            Init();
+        }
+
+
+        /* /////-----------  ПРИВАТНЫЕ Методы   -----------\\\\\ */
+
+        /// <summary>
         /// Инициализация ячеек календаря
         /// </summary>
         private void Init()
@@ -94,7 +107,7 @@ namespace MoneyChecker.Models
 
                 if (i == 25)
                 {
-                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие qqqqq asdasdad{i}"});
+                    cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие qqqqq asdasdad{i}" });
                     cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие wwwwwww asdasdasda{i}" });
                     cell.GetDateEvents.Add(new DateEvent() { data = cell._date, Description = $"событие  eeeeeeee {i} asdasdasdad" });
 
@@ -109,8 +122,6 @@ namespace MoneyChecker.Models
             _listView.ItemsSource = _cells;
 
         }
-
-        /* /////-----------  ПРИВАТНЫЕ Методы   -----------\\\\\ */
 
         /// <summary>
         /// Добавить дней перед первым числом в зависимости от дня недели первого числа

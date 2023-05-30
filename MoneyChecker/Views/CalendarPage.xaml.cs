@@ -1,6 +1,7 @@
 ﻿using MoneyChecker.AppWindow;
 using MoneyChecker.Entities;
 using MoneyChecker.Models;
+using System;
 using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,5 +66,10 @@ namespace MoneyChecker.Views
 
         }
 
+        private void LabelCurentDate_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            calendarControl.SetDate(DateTime.Now);
+            LabelCurentDate.Content = calendarControl.GetCurentDatePeriod;
+        }
     }
 }
